@@ -35,15 +35,21 @@ app.put('/change-password', (req, res) => {
     const body = req.body
     const [site, password] = [body.site, body.password]
 
-
-    // if (!(oldSite in passwords)) {
-    //     res.sendStatus(500)
-    // }
-
-    // delete Object.assign(o, {[newSite]: o[oldSite] })[oldSite]
-
     passwords[site] = password
 
+    res.sendStatus(200)
+})
+
+app.delete('/delete-password', (req, res) => {
+    console.log('bla-bla-bla')
+
+    const site = req.body.site
+
+    if (!(site in passwords)) {
+        res.sendStatus(500)
+    }
+
+    delete passwords[site]
     res.sendStatus(200)
 })
 
